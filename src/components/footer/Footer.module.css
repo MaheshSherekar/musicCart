@@ -1,0 +1,14 @@
+.footer{
+    height: 87px;
+    width: 100%;
+    background-color: rgba(46, 0, 82, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    bottom: 0;
+}
+
+.footer h3{
+    color: rgba(255, 255, 255, 1);
+}

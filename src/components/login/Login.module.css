@@ -1,0 +1,16 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+.musicLogo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.musicLogo img{
+   height: 50px;
+   width: 50px;
+}
