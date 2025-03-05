@@ -1,7 +1,9 @@
 import React from "react";
 import musicLogo from "../../assets/image 4.png";
 import style from "./Login.module.css";
+import { useNavigate } from "react-router-dom";
 const Login = ()=>{
+    const navigate = useNavigate();
     return(
         <>
             <div className={style.container}>
@@ -25,7 +27,7 @@ const Login = ()=>{
                 </div>
                 <div className={style.newUser}>
                     <p>--------- New to Musicart? ----------</p>
-                    <button type="button">Create your Musicart account</button>
+                    <button type="button" onClick={()=>navigate("/register")}>Create your Musicart account</button>
                 </div>
             </div>
         </>

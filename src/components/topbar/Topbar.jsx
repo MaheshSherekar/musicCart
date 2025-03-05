@@ -15,7 +15,7 @@ const Topbar = ()=>{
                 <div>
                     <p>
                         <NavLink to="/login">Login</NavLink> |
-                        <a href="#">Signup</a>
+                        <NavLink to="/register">Signup</NavLink>
                     </p>
                 </div>
             </div>
