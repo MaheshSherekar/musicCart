@@ -38,6 +38,9 @@
     border-radius: 5px;
     height: 30px;
 }
+.inputGroup p{
+    color: red;
+}
 .formContainer input[type="button"]{
     width: 100%;
     border-radius: 5px;

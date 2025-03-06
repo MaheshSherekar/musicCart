@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./Filter.module.css";
 const Filter = ()=>{
+    console.log("Banner Trigger");
     return(
         <>
             <div className={style.filter}>
@@ -60,4 +61,4 @@ const Filter = ()=>{
     )
 }
 
-export default Filter;
+export default React.memo(Filter);
