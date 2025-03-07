@@ -1,4 +1,4 @@
-.Container{
+.ContainerGroup{
     height: auto;
     width: 94%;
     display: flex;
@@ -9,7 +9,7 @@
     gap : 10px;
 }
 
-.box{
+.boxGroup{
     height : 270px;
     width: 24%;
     display: flex;
@@ -18,18 +18,59 @@
     align-items: center;
 }
 
-.boxImage{
+.boxGroup img{
+    height: 120px;
+    width: 100%;
+}
+
+.boxGroup .boxCaption{
+    line-height: 0.3;
+    margin-left: 15px;
+}
+
+.boxGroup .boxImage{
     background-color: rgba(212, 229, 255, 1);
     padding: 15px;
     margin-top : 10%;
 }
 
-.box img{
-    height: 120px;
+
+.ContainerList{
+    height: auto;
+    width: 94%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 3%;
+    gap : 10px;
+}
+
+.boxList{
+    height : 270px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap : 30px;
+    margin-top: 2%;
+    border-bottom: 2px solid rgba(46, 0, 82, 1);
+}
+
+.boxList img{
+    height: 240px;
     width: 100%;
 }
 
-.box .boxCaption{
+.boxList .boxCaption{
     line-height: 0.3;
     margin-left: 15px;
 }
+
+
+.boxList .boxImage{
+    background-color: rgba(212, 229, 255, 1);
+    padding: 10px;
+}
+

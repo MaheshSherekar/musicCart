@@ -1,15 +1,29 @@
 import React from "react";
 import style from "./Filter.module.css";
-const Filter = ()=>{
-    console.log("Banner Trigger");
+import Data from "../data/Data";
+const Filter = ({data})=>{
+
+    const check = (e)=>{
+        var t = e.target.value;
+        const searchedData = Data.filter((val,index)=>{
+            let companyName = val.companyName.toString();
+            let productName = val.productName.toString();
+            let color = val.color.toString();
+            let price = val.price.toString();
+            let type = val.type.toString();
+            let result = companyName.match(new RegExp(t, "i")) || productName.match(new RegExp(t, "i")) || color.match(new RegExp(t, "i")) || price.match(new RegExp(t, "i")) || type.match(new RegExp(t, "i"));
+            return result;
+        })
+        data.setSeacrhProduct([searchedData]);
+    }
     return(
         <>
             <div className={style.filter}>
-                <input type="text" placeholder="Search Product"/>
+                <input type="text" placeholder="Search Product" onChange={(e)=>check(e)}/>
                 <div className={style.filterOptions}>
                     <div className={style.buttons}>
-                        <button>List</button>
-                        <button>Group</button>
+                        <button onClick={()=>data.setIsList("list")}>List</button>
+                        <button onClick={()=>data.setIsList("group")}>Group</button>
                     </div>
                     <div className={style.options}>
                         <select>
@@ -61,4 +75,4 @@ const Filter = ()=>{
     )
 }
 
-export default React.memo(Filter);
+export default Filter;
