@@ -2,7 +2,7 @@
     height: auto;
     width: 94%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
     margin: 3%;
