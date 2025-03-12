@@ -45,25 +45,28 @@ const Filter = ({data})=>{
     const searchSort = (e)=>{
         let value = e.target.value;
         let result;
+        let sortDate = [...Data];
         if(value == "Lowest"){
-            result = Data.sort((a,b)=>{
+            result = sortDate.sort((a,b)=>{
                 return a.price - b.price;
             })
         }
         else if(value == "Highest"){
-            result = Data.sort((a,b)=>{
+            result = sortDate.sort((a,b)=>{
                 return b.price - a.price;
             })
         }
         else if(value == "A-Z"){
-            result = Data.sort((a,b)=>{
+            result = sortDate.sort((a,b)=>{
                 return a.companyName.localeCompare(b.companyName);
             })
         }
         else if(value == "Z-A"){
-            result = Data.sort((a,b)=>{
+            result = sortDate.sort((a,b)=>{
                 return b.companyName.localeCompare(a.companyName);
             })
+        }else{
+            
         }
         data.setSeacrhProduct(result);
     }
