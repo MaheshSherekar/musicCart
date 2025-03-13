@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useCallback, useContext, useState } from "react";
 import style from "./Product.module.css";
 import { useParams, useNavigate } from "react-router-dom";
 import Data from "../data/Data";
+import { addToCartContext } from "../contextAPI/ContextAPI";
+
 const Product = ()=>{
     const {id} = useParams();
+    const {setProductData} = useContext(addToCartContext)
+
+    const useNavigates = useNavigate();
+
     const data = Data.filter((val)=>{
         return val.id == id;
+    })   
+
+    const addToCart = useCallback((id)=>{
+        const data = Data.filter((val)=>{
+            return val.id == id;
+        })
+        setProductData(data);
     })
-    const useNavigates = useNavigate();
+
     return(
         <>
             <div className={style.container}>
@@ -41,7 +54,7 @@ const Product = ()=>{
                                     </p>
                                     <p><b>Available - In stock</b></p>
                                     <p><b>Brand - {val.companyName}</b></p>
-                                    <button type="button" className={style.addToCart}>Add to cart</button>
+                                    <button type="button" className={style.addToCart} onClick={()=>addToCart(val.id)}>Add to cart</button>
                                     <button type="button" className={style.buyNow}>Buy Now</button>
                                 </div>
                             </div> 
