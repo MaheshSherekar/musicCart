@@ -2,24 +2,19 @@ import React, { useCallback, useContext, useState } from "react";
 import style from "./Product.module.css";
 import { useParams, useNavigate } from "react-router-dom";
 import Data from "../data/Data";
-import { addToCartContext } from "../contextAPI/ContextAPI";
+import useAddToCartLocalStorage from "../customHook/useAddToCartLocalStorage";
+
 
 const Product = ()=>{
     const {id} = useParams();
-    const {setProductData} = useContext(addToCartContext)
-
+    const [addProduct, setAddProduct] = useAddToCartLocalStorage("username" , "Sherekar");
+    const [addId, setId] = useAddToCartLocalStorage("userId" , "1");
     const useNavigates = useNavigate();
-
+    
     const data = Data.filter((val)=>{
         return val.id == id;
     })   
 
-    const addToCart = useCallback((id)=>{
-        const data = Data.filter((val)=>{
-            return val.id == id;
-        })
-        setProductData(data);
-    })
 
     return(
         <>
@@ -54,7 +49,7 @@ const Product = ()=>{
                                     </p>
                                     <p><b>Available - In stock</b></p>
                                     <p><b>Brand - {val.companyName}</b></p>
-                                    <button type="button" className={style.addToCart} onClick={()=>addToCart(val.id)}>Add to cart</button>
+                                    <button type="button" className={style.addToCart}>Add to cart</button>
                                     <button type="button" className={style.buyNow}>Buy Now</button>
                                 </div>
                             </div> 

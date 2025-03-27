@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import musicLogo from "../../assets/image 4.png";
 import style from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
+import useLoginStatus from "../logonStatus/useLoginStatus";
 const Login = ()=>{
     const navigate = useNavigate();
     const [validate, setValidate] = useState({
@@ -36,10 +37,17 @@ const Login = ()=>{
        
     }
 
+    const [loginStatus, setLoginStatus] = useState(null);
+
     const submitData = ()=>{
         if(!checkData()) return;
-        
-        console.log(validate)
+        var userRegisterDetails = JSON.parse(localStorage.getItem("register"));
+       
+        if(validate.email == userRegisterDetails.email && validate.password == userRegisterDetails.password){
+            setLoginStatus(useLoginStatus(true, userRegisterDetails));
+        }else{
+            setLoginStatus(useLoginStatus(false, null));
+        }
         setError({
             email : '',
             password : ''

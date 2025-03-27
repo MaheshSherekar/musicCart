@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import musicLogo from "../../assets/image 4.png";
 import style from "./Register.module.css";
 import {NavLink} from "react-router-dom";
+import useUserRegisterLocalStorage from "../customHook/useUserRegisterLocalStorage";
 const Register = ()=>{
     const [validate, setValidate] = useState({
         name : "",
@@ -16,8 +17,8 @@ const Register = ()=>{
             {...prev,[name] : val}
         ))
     }
-    const submitData =()=>{
-        console.log(validate);
+    const submitData =()=>{      
+        useUserRegisterLocalStorage("register", validate);
         setValidate({
             name : "",
             mobile : "",

@@ -10,7 +10,6 @@ import Register from './components/register/Register'
 import ScrollToTop from './components/scrolltop/ScrollToTop'
 import Products from './components/products/Products'
 function App() {
-  
   return (
     <>
       <BrowserRouter>
