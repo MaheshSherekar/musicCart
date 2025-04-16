@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import style from "./Topbar.module.css";
 import Header from "../header/Header";
 import {NavLink} from "react-router-dom";
+import { UserLoginDetail } from "../context/UserAuth";
+
 const Topbar = ()=>{
+   const {loginDetail,setLoginDetail} = useContext(UserLoginDetail)
+
+   const isLoggedIn = loginDetail && Object.keys(loginDetail).length > 0;
+
+    const logout = ()=>{
+        setLoginDetail({});
+    }
+   console.log(loginDetail)
     return(
         <>
             <div className={style.container}>
@@ -13,10 +23,21 @@ const Topbar = ()=>{
                     <p>Get 50% off on selected items | Shop Now</p>
                 </div>
                 <div>
-                    <p>
-                        <NavLink to="/login">Login</NavLink> |
-                        <NavLink to="/register">Signup</NavLink>
-                    </p>
+                   
+                <p>
+                    { !isLoggedIn ? (
+                        <>
+                            <NavLink to="/login">Login</NavLink> |{" "}
+                            <NavLink to="/register">Signup</NavLink>
+                        </>
+                        ) : (
+                        <button onClick={logout}>Logout</button>
+                    )}
+                    
+                </p>
+                    
+                        
+                   
                 </div>
             </div>
 

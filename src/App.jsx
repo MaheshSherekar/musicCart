@@ -9,11 +9,14 @@ import Product from './components/product/Product'
 import Register from './components/register/Register'
 import ScrollToTop from './components/scrolltop/ScrollToTop'
 import Products from './components/products/Products'
+import UserAuth from './components/context/UserAuth'
 function App() {
   return (
     <>
+    <UserAuth>
       <BrowserRouter>
       <ScrollToTop />
+      
       < Topbar />  
         <Routes>
             <Route path="/" element={<Home />} />
@@ -24,7 +27,7 @@ function App() {
         </Routes>
       <Footer />
       </BrowserRouter>        
-   
+      </UserAuth>
     </>
   )
 }

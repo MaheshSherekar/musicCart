@@ -2,13 +2,12 @@ import React, { useCallback, useContext, useState } from "react";
 import style from "./Product.module.css";
 import { useParams, useNavigate } from "react-router-dom";
 import Data from "../data/Data";
-import useAddToCartLocalStorage from "../customHook/useAddToCartLocalStorage";
+
 
 
 const Product = ()=>{
     const {id} = useParams();
-    const [addProduct, setAddProduct] = useAddToCartLocalStorage("username" , "Sherekar");
-    const [addId, setId] = useAddToCartLocalStorage("userId" , "1");
+
     const useNavigates = useNavigate();
     
     const data = Data.filter((val)=>{
