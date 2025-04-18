@@ -10,23 +10,30 @@ import Register from './components/register/Register'
 import ScrollToTop from './components/scrolltop/ScrollToTop'
 import Products from './components/products/Products'
 import UserAuth from './components/context/UserAuth'
+import Cart from './components/cart/Cart'
+import CartContext from './components/context/CartContext'
+import Checkout from './components/checkout/Checkout'
 function App() {
   return (
     <>
     <UserAuth>
-      <BrowserRouter>
-      <ScrollToTop />
-      
-      < Topbar />  
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/product/:id" element={<Product />} />
-        </Routes>
-      <Footer />
-      </BrowserRouter>        
+      <CartContext>
+        <BrowserRouter>
+          <ScrollToTop />
+          
+          < Topbar />  
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/product/:id" element={<Product />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/checkout" element={<Checkout />} />
+            </Routes>
+          <Footer />
+        </BrowserRouter> 
+      </CartContext>       
       </UserAuth>
     </>
   )

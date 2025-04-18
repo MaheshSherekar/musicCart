@@ -1,24 +1,74 @@
 import React, { useCallback, useContext, useState } from "react";
 import style from "./Product.module.css";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, NavLink } from "react-router-dom";
 import Data from "../data/Data";
-
+import { UserLoginDetail } from "../context/UserAuth";
+import { CartDetail } from "../context/CartContext";
 
 
 const Product = ()=>{
     const {id} = useParams();
-
-    const useNavigates = useNavigate();
+    const {loginDetail} = useContext(UserLoginDetail)
+    const isLogin = Object.keys(loginDetail).length > 0 ? true : false;
+    const navigate = useNavigate();
+    const {setCartDetail} = useContext(CartDetail);
+    const [popupData, setpopupData] = useState("")
     
     const data = Data.filter((val)=>{
         return val.id == id;
     })   
 
+    const addToCart = () => {
+        if (isLogin) {
+            const selectedProduct = data[0]; // since filter returns an array
+    
+            setCartDetail((prev) => {
+                const isAlreadyInCart = prev.some(item => item.id === selectedProduct.id);
+                if (isAlreadyInCart) {
+                    setpopupData("Already Product Added !!")
+                    return prev; // Do not add if already present
+                }
+                setpopupData("Product Added !!")
+                return [...prev, {...selectedProduct, qty : 1}]; // Add if not present
+            });
+            showPopup();
+        } else {
+            navigate("/login");
+        }
+    }
+
+    const buyNow = ()=>{
+        if (isLogin) {
+            const selectedProduct = data[0]; // since filter returns an array
+    
+            setCartDetail((prev) => {
+                const isAlreadyInCart = prev.some(item => item.id === selectedProduct.id);
+                if (isAlreadyInCart) {
+                    return prev; // Do not add if already present
+                }
+                return [...prev, {...selectedProduct, qty : 1}]; // Add if not present
+            });
+            navigate("/cart");
+        } else {
+            navigate("/login");
+        }
+    }
+    
+
+    const showPopup = ()=>{
+        var c = style.showPopup;
+        document.getElementById(c).style.display="flex";
+    }
+
+    const closePopup = ()=>{
+        var c = style.showPopup;
+        document.getElementById(c).style.display="none";
+    }
 
     return(
         <>
             <div className={style.container}>
-                <button type="button" onClick={()=>useNavigates("/products")}>Back to products</button>
+                <button type="button" onClick={()=>navigate("/products")}>Back to products</button>
                 
                     { data.length>=1 ? data.map((val,index)=>(
                         <div key={val.index}>
@@ -48,14 +98,17 @@ const Product = ()=>{
                                     </p>
                                     <p><b>Available - In stock</b></p>
                                     <p><b>Brand - {val.companyName}</b></p>
-                                    <button type="button" className={style.addToCart}>Add to cart</button>
-                                    <button type="button" className={style.buyNow}>Buy Now</button>
+                                   
+                                    <button type="button" className={style.addToCart} onClick={addToCart}>Add to cart</button>
+                                    <button type="button" className={style.buyNow} onClick={buyNow}>Buy Now</button>                                   
                                 </div>
                             </div> 
                         </div>
                     )) : "No Data Found"}
-                
-
+                <div id={style.showPopup}>
+                    <h3>{popupData} </h3><br />
+                    <div id={style.closePopup} onClick={closePopup}>CLOSE</div>
+                </div>
             </div>
         </>
     )
