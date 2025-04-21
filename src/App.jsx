@@ -13,27 +13,30 @@ import UserAuth from './components/context/UserAuth'
 import Cart from './components/cart/Cart'
 import CartContext from './components/context/CartContext'
 import Checkout from './components/checkout/Checkout'
+import CheckoutContext from './components/context/CheckoutContext'
 function App() {
   return (
     <>
     <UserAuth>
-      <CartContext>
-        <BrowserRouter>
-          <ScrollToTop />
-          
-          < Topbar />  
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/products" element={<Products />} />
-                <Route path="/product/:id" element={<Product />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route path="/checkout" element={<Checkout />} />
-            </Routes>
-          <Footer />
-        </BrowserRouter> 
-      </CartContext>       
+    <CheckoutContext>
+      <CartContext>          
+                <BrowserRouter>
+                  <ScrollToTop />
+                  
+                  < Topbar />  
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/products" element={<Products />} />
+                        <Route path="/product/:id" element={<Product />} />
+                        <Route path="/cart" element={<Cart />} />
+                        <Route path="/checkout" element={<Checkout />} />
+                    </Routes>
+                  <Footer />
+                </BrowserRouter> 
+      </CartContext>  
+      </CheckoutContext>     
       </UserAuth>
     </>
   )

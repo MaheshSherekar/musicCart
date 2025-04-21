@@ -2,10 +2,11 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./Cart.module.css";
 import { CartDetail } from "../context/CartContext";
+import { CheckoutDetail } from "../context/CheckoutContext";
 const Cart = ()=>{
     const navigate = useNavigate();
     const {cartDetail, setCartDetail} = useContext(CartDetail)
-  
+    const {checkout, setCheckout} = useContext(CheckoutDetail)
     const ConvenienceFees = 45;
     const updateQty = (index, value) => {
         const updated = cartDetail.map((item, i) =>
@@ -16,6 +17,15 @@ const Cart = ()=>{
     console.log(cartDetail)
     
     const grandTotal = cartDetail.reduce((sum, item) => sum + item.price * item.qty, 0);
+
+    const placeOrder = ()=>{
+        const obj = {
+            grandTotal : grandTotal + ConvenienceFees,
+            cartDetail
+        }
+        setCheckout(obj)
+        navigate("/checkout")
+    }
     return(
         <>
             <div className={style.container}>
@@ -78,7 +88,7 @@ const Cart = ()=>{
                             </div>
                             <div>
                                 <h3>Total Amount &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ₹{grandTotal + ConvenienceFees}</h3>
-                                <button type="button" >PLACE ORDER</button>
+                                <button type="button" onClick={placeOrder}>PLACE ORDER</button>
                             </div>
                         </div>
                     </div>
