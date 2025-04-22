@@ -1,0 +1,27 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 500px;
+    width: 500px;
+    box-shadow: 20px 20px 20px 20px black;
+    margin: auto;
+    margin-bottom: 20%;
+}
+
+.container img{
+    height: 100px;
+    width: 100px;
+}
+
+.container button{
+    background-color: rgba(46, 0, 82, 1);
+    color: white;
+    height: 30px;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

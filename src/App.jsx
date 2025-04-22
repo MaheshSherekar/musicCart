@@ -14,10 +14,14 @@ import Cart from './components/cart/Cart'
 import CartContext from './components/context/CartContext'
 import Checkout from './components/checkout/Checkout'
 import CheckoutContext from './components/context/CheckoutContext'
+import ConfirmOrderContext from './components/context/ConfirmOrderContext'
+import Congratulations from './components/congratulations/Congratulations'
+import Invoice from './components/invoice/Invoice'
 function App() {
   return (
     <>
     <UserAuth>
+    <ConfirmOrderContext>
     <CheckoutContext>
       <CartContext>          
                 <BrowserRouter>
@@ -32,11 +36,14 @@ function App() {
                         <Route path="/product/:id" element={<Product />} />
                         <Route path="/cart" element={<Cart />} />
                         <Route path="/checkout" element={<Checkout />} />
+                        <Route path="/congratulations" element={<Congratulations />} />
+                        <Route path="/invoice" element={<Invoice />} />
                     </Routes>
                   <Footer />
                 </BrowserRouter> 
       </CartContext>  
-      </CheckoutContext>     
+      </CheckoutContext> 
+      </ConfirmOrderContext>    
       </UserAuth>
     </>
   )

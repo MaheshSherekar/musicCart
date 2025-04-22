@@ -65,6 +65,11 @@ h1:first-of-type{
 
 .rightBox{
     width: 30%;
+    border : 2px solid black;
+    border-radius: 20px;
+    margin: 2%;
+    height: 300px;
+    padding: 20px;
 }
 
 .rightBox .placeButton{
@@ -74,4 +79,23 @@ h1:first-of-type{
     width: 100% !important;
     background-color: rgba(255, 214, 0, 1) !important;
     color : rgba(0, 0, 0, 1) !important;
+}
+
+
+.orderSummaryDetails{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.orderSummary{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.orderSummaryDetails div:last-child{
+    color: rgba(181, 43, 0, 1);
+    border-top: 2px solid black;
+    font-size: 20px;
 }
