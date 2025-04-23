@@ -17,6 +17,7 @@ import CheckoutContext from './components/context/CheckoutContext'
 import ConfirmOrderContext from './components/context/ConfirmOrderContext'
 import Congratulations from './components/congratulations/Congratulations'
 import Invoice from './components/invoice/Invoice'
+import InvoiceDetail from './components/invoice/InvoiceDetail'
 function App() {
   return (
     <>
@@ -38,6 +39,7 @@ function App() {
                         <Route path="/checkout" element={<Checkout />} />
                         <Route path="/congratulations" element={<Congratulations />} />
                         <Route path="/invoice" element={<Invoice />} />
+                        <Route path="/invoicedetail/:index" element={<InvoiceDetail />} />
                     </Routes>
                   <Footer />
                 </BrowserRouter> 

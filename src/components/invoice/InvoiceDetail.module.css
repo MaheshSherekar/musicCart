@@ -1,0 +1,101 @@
+.container{
+    margin: 3%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+
+}
+
+.container button[type="button"]{
+    background-color: rgba(46, 0, 82, 1);
+    border-radius: 14px;
+    color: white;
+    padding: 10px;
+    width: 15%;
+}
+
+.deliveryAddress button[type="button"]{
+    background-color: rgba(255, 214, 0, 1);
+    border-radius: 14px;
+    color: rgba(0, 0, 0, 1);
+    margin-top: 10%;
+    margin-left: 20%;
+    padding: 10px;
+    width: 50%;
+}
+
+h1:first-of-type{
+    text-align : center;
+}
+
+.checkoutContainer{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    min-height: 200px;
+    width: 100%;
+}
+
+.leftBox{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.deliveryAddress, .paymentMethod, .itemsDetail{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-bottom: 2px solid gray;
+}
+
+.deliveryAddress div, .paymentMethod div, .itemsDetail div{
+    width : 50%;
+}
+
+.deliveryAddress h4, .paymentMethod h4, .itemsDetail h4{
+   color: rgba(181, 43, 0, 1);
+}
+
+.deliveryAddress textarea, .paymentMethod select{
+    width: 50%;
+}
+
+.rightBox{
+    width: 30%;
+    border : 2px solid black;
+    border-radius: 20px;
+    margin: 2%;
+    height: 300px;
+    padding: 20px;
+}
+
+.rightBox .placeButton{
+    width : 100%;
+}
+.placeButton button{
+    width: 100% !important;
+    background-color: rgba(255, 214, 0, 1) !important;
+    color : rgba(0, 0, 0, 1) !important;
+}
+
+
+.orderSummaryDetails{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.orderSummary{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.orderSummaryDetails div:last-child{
+    color: rgba(181, 43, 0, 1);
+    border-top: 2px solid black;
+    font-size: 20px;
+}
