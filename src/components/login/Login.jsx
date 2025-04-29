@@ -16,6 +16,8 @@ const Login = ()=>{
         password : ''
     });
 
+    const [checklogin, setCheckLogin] = useState("")
+
     const setValue = (e)=>{
         let name  = e.target.name;
         let val  = e.target.value;
@@ -44,9 +46,11 @@ const Login = ()=>{
 
         if(validate.email == userRegisterDetails.email && validate.password == userRegisterDetails.password){
            setLoginDetail(userRegisterDetails);
+           setCheckLogin("")
            navigate("/")
         }else{
             setLoginDetail({});
+            setCheckLogin("Enail or Password Wrong")
         }
         setError({
             email : '',
@@ -75,6 +79,9 @@ const Login = ()=>{
                             <label>Password</label>
                             <input type="password" name="password" value={validate.password} onChange={(e)=>setValue(e)}/>
                             <p>{error.password}</p>
+                        </div>
+                        <div className={style.inputGroup}>
+                            <p>{checklogin}</p>
                         </div>
                         <input type="button" value="Continue" onClick={()=>{submitData()}}/>
                         <p>By continuing, you agree to Musicart privacy notice and conditions of use.</p>

@@ -12,17 +12,17 @@ const InvoiceDetail = ()=>{
     const {confirmOrders} = useContext(ConfirmOrder)
     console.log(confirmOrders)
 
-    const value = confirmOrders.map((value, index) => {
+    const value = confirmOrders.filter((values, index) => {
         if (index === Number(indexValue)) {
-            const obj = {
-                address : value.address,
-                payment : value.payment,
-                grandtotal : value.checkout.grandTotal,
-                details : value.checkout.cartDetail
-            }
-            return obj;
+            // const obj = {
+            //     address : value.address,
+            //     payment : value.payment,
+            //     grandtotal : value.checkout.grandTotal,
+            //     details : value.checkout.cartDetail
+            // }
+            return values;
         }
-        return null;
+        //return null;
     })
 
     console.log(value,"va")
@@ -39,8 +39,9 @@ const InvoiceDetail = ()=>{
                                 <h4>1. Delivery Address</h4>
                             </div>
                             <div>
-                                <label>{loginDetail.name}</label><br />
-                                <textarea placeholder="Entert Address" rows="6"></textarea>
+                                <label>{loginDetail.name}</label><br /><br />
+                                {value[0].address}
+                                
                             </div>
                         </div>
                         <div className={style.paymentMethod}>
@@ -48,12 +49,7 @@ const InvoiceDetail = ()=>{
                                 <h4>2. Payment method</h4>
                             </div>
                             <div>
-                                <select name="payametMode">
-                                    <option>Mode of payment</option>
-                                    <option>Pay on Delivery</option>
-                                    <option>UPI</option>
-                                    <option>Card</option>
-                                </select>
+                                <input type="text" value={value[0].payment} readOnly />
                             </div>
                         </div>
                         <div className={style.itemsDetail}>
@@ -61,17 +57,13 @@ const InvoiceDetail = ()=>{
                                 <h4>3. Review items and delivery</h4>
                             </div>
                             <div>
-                            {value.map((values, index) => {
-                                    return (
-                                        <React.Fragment key={index}>
-                                            <img src={value.checkout.cartDetail[0].asset} height="100" width="100" />
-                                            <div>
-                                                {value.checkout.cartDetail[0].productName} {value.checkout.cartDetail[0].companyName} <br />
-                                                qty: {value.checkout.cartDetail[0].qty} &nbsp; color: {value.checkout.cartDetail[0].color}
-                                            </div>
-                                        </React.Fragment>
-                                    );
-                            })}
+                            {value[0].checkout.cartDetail.map((values, index) => (
+                                <>
+                                    <img src={values.asset} height="50" width="50" />
+                                    <p>{values.companyName} &nbsp; &nbsp; {values.productName} &nbsp; &nbsp; color - {values.color}</p>
+                                </>
+                                   
+                            ))}
 
                                     <h5>
                                     Estimated delivery :<br />
@@ -79,27 +71,15 @@ const InvoiceDetail = ()=>{
                                 </h5>
                             </div>
                         </div>
-                        <div className={style.deliveryAddress}>
-                            <div>
-                                <button type="button">Place your order</button>
-                            </div>
-                            <div>
-                                <h4> Order Total : ₹{5555555 }<br />
-                                By placing your order, you agree to Musicart privacy notice and conditions of use.</h4>
-                            </div>
-                        </div>
+                      
                     </div>
                     <div className={style.rightBox}>
-                        <div className={style.placeButton}>
-                                <button type="button" >Place your order</button><br />
-                                <p>By placing your order, you agree to Musicart privacy
-                                notice and conditions of use.</p>
-                        </div>
+                     
                         <div className={style.orderSummaryDetails}>
                                 <h4>Order Summary</h4>
                                 <div className={style.orderSummary}>
                                     <p>Items :</p>
-                                    <p>₹{55555 - 45 }</p>
+                                    <p>₹{value[0].checkout.grandTotal - 45}</p>
                                 </div>
                                 <div className={style.orderSummary}>
                                     <p>Delivery :</p>
@@ -107,7 +87,7 @@ const InvoiceDetail = ()=>{
                                 </div>
                                 <div className={style.orderSummary}>
                                     <p>Order Total :</p>
-                                    <p>₹{5555555 }</p>
+                                    <p>₹{value[0].checkout.grandTotal }</p>
                                 </div>
                         </div>
                     </div>

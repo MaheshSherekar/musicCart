@@ -93,7 +93,7 @@ const Checkout = ()=>{
                             </div>
                             <div className={style.deliveryAddress}>
                                 <div>
-                                   <button type="button">Place your order</button>
+                                   <button type="button" onClick={confirmOrder}>Place your order</button>
                                 </div>
                                 <div>
                                    <h4> Order Total : ₹{checkout.grandTotal }<br />
